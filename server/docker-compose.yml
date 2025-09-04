@@ -1,0 +1,13 @@
+version: '3'
+services:
+  signaling:
+    build: .
+    ports:
+      - "8080:8080"
+  coturn:
+    image: instrumentisto/coturn
+    restart: unless-stopped
+    ports:
+      - "3478:3478"
+      - "3478:3478/udp"
+    command: ["-n", "--log-file=stdout", "-v"]
